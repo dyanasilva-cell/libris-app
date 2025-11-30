@@ -1,0 +1,22 @@
+{% extends 'global/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="chat-room">
+
+    <header>
+        <h3>{{ conversa.nome }}</h3>
+        <a href="{% url 'livros:chat' %}">← voltar</a>
+    </header>
+
+    <div class="messages">
+        {% for m in mensagens %}
+            <div class="msg {% if m.autor == user %}me{% else %}other{% endif %}">
+                <p>{{ m.texto }}</p>
+                <span>{{ m.autor.username }}</span>
+            </div>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}

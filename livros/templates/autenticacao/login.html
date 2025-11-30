@@ -1,0 +1,37 @@
+{% extends "global/base.html" %}
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<main class="login-container">
+    <div class="login-box">
+        <div class="logo-libres">
+            <img src="{% static 'livros/img/logo.png' %}" alt="Logo Libris">
+            <h1 class="logo-text">LIBRIS</h1>
+        </div>
+
+        <h2 class="auth-heading">Sua biblioteca virtual</h2>
+
+        <form method="POST" action="{% url 'livros:login_view' %}">
+            {% csrf_token %}
+            
+            {% if form.errors %}
+                <p class="error-message">E-mail ou senha inválidos.</p>
+            {% endif %}
+            
+            <label for="{{ form.username.id_for_label }}">E-mail</label>
+            {{ form.username }}
+            
+            <label for="{{ form.password.id_for_label }}">Senha</label>
+            {{ form.password }}
+
+            <button type="submit" class="btn-primary">Entrar</button>
+        </form>
+
+        <a href="#" class="forgot-password">Esqueci minha senha</a>
+        <div class="divider">OU</div>
+        <a href="{% url 'livros:registro' %}" class="btn-secondary">Criar Conta</a>
+    </div>
+</main>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "global/base.html" %}
+{% load static %}
+
+{% block title %}Criar Conta{% endblock %}
+
+{% block content %}
+<main class="login-container">
+    <div class="login-box">
+        <div class="logo-libres">
+            <img src="{% static 'livros/img/logo.png' %}" alt="Logo Libris">
+            <h1 class="logo-text">LIBRIS</h1>
+        </div>
+
+        <h2 class="auth-heading">Criar nova conta</h2>
+
+        <form method="POST" action="{% url 'livros:registro' %}">
+            {% csrf_token %}
+
+            <label for="{{ form.first_name.id_for_label }}">Nome</label>
+            {{ form.first_name }}
+    
+            <label for="{{ form.username.id_for_label }}">E-mail</label>
+            {{ form.username }}
+    
+            <label for="{{ form.password1.id_for_label }}">Senha</label>
+            {{ form.password1 }}
+
+            <label for="{{ form.password2.id_for_label }}">Confirme a Senha</label>
+            {{ form.password2 }}
+    
+            <button type="submit" class="btn-primary">Criar Conta</button>
+        </form>
+    </div>
+</main>
+{% endblock %}

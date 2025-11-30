@@ -1,0 +1,84 @@
+{% extends "global/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<header class="perfil-header">
+    <a href="{% url 'livros:home' %}" class="back-btn">⬅</a>
+    <span>Perfil</span>
+</header>
+
+<section class="perfil-card">
+    <div class="perfil-avatar">{{ perfil.inicial }}</div>
+
+    <div class="perfil-nome">{{ perfil.user.first_name }}</div>
+    <div class="perfil-email">{{ perfil.user.username }}</div>
+    <div class="perfil-bio">
+        {{ perfil.bio|default:"Amante de ficção e literatura clássica" }}
+    </div>
+
+    <div class="perfil-pontos">{{ perfil.pontos }} pts</div>
+
+    <div class="perfil-stats">
+        <div>
+            <span>{{ perfil.livros_publicados }}</span>
+            Livros
+        </div>
+        <div>
+            <span>{{ perfil.livros_lidos }}</span>
+            Lidos
+        </div>
+        <div>
+            <span>{{ perfil.avaliacoes_feitas }}</span>
+            Avaliações
+        </div>
+    </div>
+</section>
+
+<section class="conquistas-card">
+    <h3>Conquistas Recentes</h3>
+
+    <div class="conquistas-lista">
+        <div class="conquista-item">
+            <img src="{% static 'livros/img/books.png' %}" width="40">
+            <div>
+                <strong>Leitor dedicado</strong><br>
+                Leu {{ perfil.livros_lidos }} livros
+            </div>
+        </div>
+
+        <div class="conquista-item">
+            <img src="{% static 'livros/img/writing.png' %}" width="40">
+            <div>
+                <strong>Crítico ativo</strong><br>
+                Escreveu {{ perfil.avaliacoes_feitas }} resenhas
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="perfil-menus">
+    <a class="menu-item">
+        <span>🏆 Desafios</span>
+        <span>></span>
+    </a>
+
+    <a class="menu-item" href="#">
+        <span>❤️ Favoritos</span>
+        <span>></span>
+    </a>
+
+    <a class="menu-item">
+        <span>📘 Histórico de leitura</span>
+        <span>></span>
+    </a>
+
+    <a class="menu-item">
+        <span>⚙ Configurações</span>
+        <span>></span>
+    </a>
+</section>
+
+<a href="{% url 'livros:logout_view' %}" class="btn-sair">Sair</a>
+
+{% endblock %}

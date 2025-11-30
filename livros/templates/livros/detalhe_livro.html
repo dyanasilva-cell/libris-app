@@ -1,0 +1,157 @@
+{% extends "global/base.html" %}
+{% load static %}
+
+{% block title %}Detalhes: {{ livro.titulo }}{% endblock %}
+
+{% block content %}
+<main class="detalhe-container">
+
+    <header class="detail-topbar">
+        <a href="{% url 'livros:home' %}">
+            <span class="icon">⬅️</span>
+        </a>
+        <div class="top-actions">
+            <span class="icon">⬇️</span>
+            <span class="icon">🤍</span>
+            <span class="icon">📤</span>
+        </div>
+    </header>
+
+    <section class="info-principal">
+        <div class="cover-area">
+            <img src="{{ livro.capa.url }}" alt="Capa de {{ livro.titulo }}" class="book-cover-large">
+        </div>
+        <div class="text-area">
+            <h1>{{ livro.titulo }}</h1>
+            <p class="autor">por {{ livro.autor }}</p>
+            <p class="genero">{{ livro.genero }}</p>
+
+        <div class="rating">
+            <span class="stars">
+                {% for i in "12345" %}
+                    {% if forloop.counter <= media_estrelas %}
+                        ⭐️ {% else %}
+                        ☆ {% endif %}
+                {% endfor %}
+            </span> 
+    ({{ livro.avaliacoes.count|default:"0" }} avaliações)
+</div>
+    </section>
+
+    <!-- BOTÕES PRINCIPAIS -->
+    <section class="actions">
+    <a href="{% url 'livros:ler_livro' pk=livro.pk %}" class="btn-leitura">
+        <span class="icon">📖</span> Começar Leitura
+    </a>
+
+    <!-- BOTÃO QUE ABRE O FORM -->
+    <button id="btn-avaliar" class="btn-avaliar">
+        ⭐ Avaliar
+    </button>
+    </section>
+
+    <section class="sinopse-area section-toggle">
+        <h2 class="toggle-header">Sinopse</h2>
+        <div class="toggle-content">
+            <p>{{ livro.sinopse }}</p>
+        </div>
+    </section>
+
+    <section class="ficha-tecnica-area section-toggle">
+        <h2 class="toggle-header">Ficha técnica</h2>
+        <div class="toggle-content">
+            <pre>{{ livro.ficha_tecnica }}</pre>
+        </div>
+    </section>
+
+    <!-- LISTA DE AVALIAÇÕES -->
+    <section class="avaliacoes-recentes card-style">
+        <header class="avaliacoes-header">
+            <h2>Avaliações recentes</h2>
+        </header>
+
+        {% if avaliacoes %}
+            {% for avaliacao in avaliacoes %}
+                <div class="avaliacao-item">
+                    <div class="header">
+
+                        {% if avaliacao.foto %}
+                            <img src="{{ avaliacao.foto.url }}" class="avatar-img">
+                        {% else %}
+                            <span class="avatar">{{ avaliacao.nome|slice:":1" }}</span>
+                        {% endif %}
+
+                        <div class="user-info">
+                            <p class="user-name"><strong>{{ avaliacao.nome }}</strong></p>
+                            <div class="rating-user">
+                                {% for i in "12345" %}
+                                    <span class="star-icon">
+                                        {% if forloop.counter <= avaliacao.estrelas %}
+                                            ⭐️
+                                        {% else %}
+                                            ☆
+                                        {% endif %}
+                                    </span>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <span class="time-ago">{{ avaliacao.data|date:"d/m/Y H:i" }}</span>
+                    </div>
+
+                    <p class="review-text">{{ avaliacao.texto }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="sem-avaliacoes">Nenhuma avaliação ainda. Seja o primeiro a avaliar!</p>
+        {% endif %}
+    </section>
+
+    <!-- FORMULÁRIO OCULTO COM ESTRELAS FUNCIONANDO -->
+    <!-- FORMULÁRIO DE AVALIAÇÃO -->
+<div id="form-avaliacao" class="card-style" style="display:none; margin-top:15px;">
+
+        <h3 style="margin-top:0; font-size:16px;">Adicionar Avaliação</h3>
+
+        <form method="POST" action="{% url 'livros:adicionar_avaliacao' pk=livro.pk %}">
+            {% csrf_token %}
+
+            <input type="text" name="nome" id="nome" required
+                placeholder="Seu Nome"
+                style="width:100%; border:1px solid var(--border-color); 
+                       border-radius:10px; padding:10px; margin-bottom: 10px;
+                       font-family:inherit; font-size:14px;">
+
+            <div class="rating-stars" id="star-selector">
+                <span data-star="1">★</span>
+                <span data-star="2">★</span>
+                <span data-star="3">★</span>
+                <span data-star="4">★</span>
+                <span data-star="5">★</span>
+            </div>
+
+            <input type="hidden" name="estrelas" id="rating-value" value="0">
+
+            <textarea name="texto" id="comentario" rows="4" required
+                placeholder="Escreva sua opinião sobre o livro..."
+                style="width:100%; border:1px solid var(--border-color); 
+                       border-radius:10px; padding:10px; 
+                       font-family:inherit; font-size:14px;"></textarea>
+
+            <button type="submit"
+                style="margin-top:12px; width:100%; padding:12px; 
+                       background-color:var(--secondary-color);
+                       border:none; border-radius:12px; 
+                       font-weight:bold; cursor:pointer; font-size:15px;">
+                Publicar Avaliação
+            </button>
+        </form>
+    </div>
+
+    <span class="mic-button">🎤</span>
+
+
+</main>
+
+{% include "livros/navbar_mobile.html" %}
+{% endblock content %}

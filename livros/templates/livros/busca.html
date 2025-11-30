@@ -1,0 +1,90 @@
+{% extends "global/base.html" %}
+{% load static %}
+
+{% block title %}Buscar{% endblock %}
+
+{% block content %}
+
+<div class="search-container">
+
+    <!-- HEADER -->
+    <header class="search-header">
+        <a href="{% url 'livros:home' %}" class="back-btn">←</a>
+        <h2>Buscar</h2>
+    </header>
+
+    <!-- BARRA DE BUSCA -->
+    <div class="search-box">
+        <input type="text" placeholder="Pesquisar livros">
+    </div>
+
+    <!-- =============================== -->
+    <!--        CLUBE DO LIVRO          -->
+    <!-- =============================== -->
+
+    {% if categorias %}
+    <section class="section">
+        <h4>Clube do livro</h4>
+
+        <div class="club-scroll">
+            {% for c in categorias %}
+            <a href="{% url 'livros:chat' %}?clube={{ c }}" class="club-pill">
+                <div class="club-icon">
+                    <img src="{% static 'livros/img/capa.png' %}" alt="Clube">
+                </div>
+                <span class="club-label">{{ c }}</span>
+            </a>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
+
+    <!-- =============================== -->
+    <!--     SUGESTÕES PARA VOCÊ        -->
+    <!-- =============================== -->
+    <section class="section">
+        <h4>Sugestões para você</h4>
+
+        <div class="pill-scroll">
+            <a href="?filtro=" class="pill {% if not filtro %}active{% endif %}">
+                Todos
+            </a>
+            {% for c in categorias %}
+                <a href="?filtro={{ c }}"
+                   class="pill {% if filtro == c %}active{% endif %}">
+                    {{ c }}
+                </a>
+            {% endfor %}
+        </div>
+
+        <!-- LISTA DE LIVROS -->
+        <div class="books-grid">
+            {% for livro in livros %}
+            <a href="{% url 'livros:detalhe_livro' livro.id %}" class="book-card">
+
+                <div class="book-cover-box">
+                    <img src="{{ livro.capa.url }}" alt="{{ livro.titulo }}">
+                </div>
+
+                <h5 class="book-title">{{ livro.titulo }}</h5>
+                <p class="book-author">{{ livro.autor }}</p>
+
+                {% if livro.media_avaliacao %}
+                <p class="book-rating">
+                    ⭐ {{ livro.media_avaliacao }}
+                </p>
+                {% endif %}
+                
+            </a>
+            {% endfor %}
+        </div>
+
+    </section>
+    {% include "livros/navbar_mobile.html" %}
+
+</div>
+
+<span class="mic-button">🎤</span>
+
+{% endblock %}

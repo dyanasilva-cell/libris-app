@@ -1,0 +1,74 @@
+{% extends "global/base.html" %}
+{% load static %}
+{% load livros_extras %}
+
+{% block title %}Minhas Bibliotecas{% endblock %}
+
+{% block content %}
+<main class="biblioteca-container">
+
+    <header class="bib-topbar">
+        <a href="{% url 'livros:home' %}" class="ico-btn">←</a>
+        <h2>Minhas Bibliotecas</h2>
+    </header>
+
+    {# aba ativa: 'leitura' é padrão #}
+    {% with tab=request.GET.tab|default:'leitura' %}
+        <div class="bib-tabs">
+            <a href="?tab=leitura" class="{% if tab == 'leitura' %}active{% endif %}">Em leitura</a>
+            <a href="?tab=estante" class="{% if tab == 'estante' %}active{% endif %}">Minha estante</a>
+        </div>
+
+        <section class="bib-lista">
+
+            {# ---- ABA EM LEITURA ---- #}
+            {% if tab == 'leitura' %}
+                {% if em_leitura %}
+                    {% for item in em_leitura %}
+                        <div class="bib-item">
+
+                            <img src="{{ item.livro.capa.url }}" class="bib-capa" alt="{{ item.livro.titulo }}">
+
+                            <div class="bib-info">
+                                <h4>{{ item.livro.titulo }}</h4>
+                                <p class="autor">{{ item.livro.autor }}</p>
+
+                                <div class="barra">
+                                    <div class="fill"
+                                         style="width:{{ item.pagina_atual|div:item.total_paginas|floatformat:0 }}%;">
+                                    </div>
+                                </div>
+
+                                <span class="percent">
+                                    {{ item.pagina_atual|div:item.total_paginas|floatformat:0 }}%
+                                </span>
+
+                                <div class="rating">
+                                    ⭐ {{ item.media }}
+                                </div>
+
+                            </div>
+
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p class="empty">Nenhum livro em leitura.</p>
+                {% endif %}
+            {% else %}
+                {# ---- ABA MINHA ESTANTE (depois preenchemos) ---- #}
+                {% if estante %}
+                    {# renderização da estante vai aqui #}
+                {% else %}
+                    <p class="empty">Nenhum livro na estante.</p>
+                {% endif %}
+            {% endif %}
+
+        </section>
+    {% endwith %}
+
+    {% include "livros/navbar_mobile.html" %}
+
+    <span class="mic-button">🎤</span>
+
+</main>
+{% endblock %}

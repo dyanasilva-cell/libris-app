@@ -1,0 +1,170 @@
+{% extends "global/base.html" %}
+{% load static %} 
+
+{% block title %}Início - Libris{% endblock %}
+
+{% block content %}
+<main class="home-container">
+    <header class="topbar">
+        <div class="topbar-icons">
+            <a href="{% url 'livros:perfil' %}">
+                <span class="icon">👤</span>
+            </a>
+            <img src="{% static 'livros/img/logo.png' %}" alt="Logo Libris" class="logo">
+            <span class="icon">🔔</span>
+        </div>
+
+        <div class="tabs">
+            <a href="{% url 'livros:home' %}" 
+               class="tab {% if active_tab == 'seguindo' %}active{% endif %}">
+                Seguindo
+            </a>
+            <a href="{% url 'livros:home' %}?tab=pra-voce" 
+               class="tab {% if active_tab == 'pra-voce' %}active{% endif %}">
+                Pra você
+            </a>
+        </div>
+    </header>
+    
+    {% if active_tab == 'seguindo' %}
+        <section class="book-section">
+            <div class="section-header"><h2>Em alta</h2><a href="#">Ver mais</a></div>
+            <div class="book-list">
+                {% for livro in livros_em_alta %}
+                <a href="{% url 'livros:detalhe_livro' livro.pk %}">
+                    <img src="{{ livro.capa.url }}" alt="{{ livro.titulo }}">
+                </a>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="book-section">
+            <div class="section-header"><h2>Romance</h2><a href="#">Ver mais</a></div>
+            <div class="book-list">
+                {% for livro in livros_romance %}
+                <a href="{% url 'livros:detalhe_livro' livro.pk %}">
+                    <img src="{{ livro.capa.url }}" alt="{{ livro.titulo }}">
+                </a>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="book-section">
+            <div class="section-header"><h2>Fantasia</h2><a href="#">Ver mais</a></div>
+            <div class="book-list">
+                {% for livro in livros_fantasia %}
+                <a href="{% url 'livros:detalhe_livro' livro.pk %}">
+                    <img src="{{ livro.capa.url }}" alt="{{ livro.titulo }}">
+                </a>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="book-section">
+            <div class="section-header"><h2>Ação</h2><a href="#">Ver mais</a></div>
+            <div class="book-list">
+                {% for livro in livros_acao %}
+                <a href="{% url 'livros:detalhe_livro' livro.pk %}">
+                    <img src="{{ livro.capa.url }}" alt="{{ livro.titulo }}">
+                </a>
+                {% endfor %}
+            </div>
+        </section>
+        
+        <section class="book-section">
+            <div class="section-header"><h2>Ficção Adolescente</h2><a href="#">Ver mais</a></div>
+            <div class="book-list">
+                {% for livro in livros_ficcao %}
+                <a href="{% url 'livros:detalhe_livro' livro.pk %}">
+                    <img src="{{ livro.capa.url }}" alt="{{ livro.titulo }}">
+                </a>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="book-section">
+            <div class="section-header"><h2>Contos</h2><a href="#">Ver mais</a></div>
+            <div class="book-list">
+                {% for livro in livros_contos %}
+                <a href="{% url 'livros:detalhe_livro' livro.pk %}">
+                    <img src="{{ livro.capa.url }}" alt="{{ livro.titulo }}">
+                </a>
+                {% endfor %}
+            </div>
+        </section>
+        
+        <section class="book-section">
+            <div class="section-header"><h2>Drama</h2><a href="#">Ver mais</a></div>
+            <div class="book-list">
+                {% for livro in livros_drama %}
+                <a href="{% url 'livros:detalhe_livro' livro.pk %}">
+                    <img src="{{ livro.capa.url }}" alt="{{ livro.titulo }}">
+                </a>
+                {% endfor %}
+            </div>
+        </section>
+        
+        <section class="book-section">
+            <div class="section-header"><h2>Gastronomia</h2><a href="#">Ver mais</a></div>
+            <div class="book-list">
+                {% for livro in livros_gastronomia %}
+                <a href="{% url 'livros:detalhe_livro' livro.pk %}">
+                    <img src="{{ livro.capa.url }}" alt="{{ livro.titulo }}">
+                </a>
+                {% endfor %}
+            </div>
+        </section>
+        
+        <section class="book-section">
+            <div class="section-header"><h2>Espiritualidade</h2><a href="#">Ver mais</a></div>
+            <div class="book-list">
+                {% for livro in livros_espiritualidade %}
+                <a href="{% url 'livros:detalhe_livro' livro.pk %}">
+                    <img src="{{ livro.capa.url }}" alt="{{ livro.titulo }}">
+                </a>
+                {% endfor %}
+            </div>
+        </section>
+        
+    {% elif active_tab == 'pra-voce' %}
+        <section class="book-section">
+            <div class="section-header"><h2>Achamos que você vai gostar</h2><a href="#">Ver mais</a></div>
+            <div class="book-list">
+                {% for livro in livros_voce_1 %}
+                <a href="{% url 'livros:detalhe_livro' livro.pk %}">
+                    <img src="{{ livro.capa.url }}" alt="{{ livro.titulo }}">
+                </a>
+                {% endfor %}
+            </div>
+        </section>
+        
+        <section class="book-section">
+            <div class="section-header"><h2>Sua próxima leitura está aqui</h2><a href="#">Ver mais</a></div>
+            <div class="book-list">
+                {% for livro in livros_voce_2 %}
+                <a href="{% url 'livros:detalhe_livro' livro.pk %}">
+                    <img src="{{ livro.capa.url }}" alt="{{ livro.titulo }}">
+                </a>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="book-section">
+            <div class="section-header"><h2>Novos talentos da semana</h2><a href="#">Ver mais</a></div>
+            <div class="book-list">
+                {% for livro in livros_voce_3 %}
+                <a href="{% url 'livros:detalhe_livro' livro.pk %}">
+                    <img src="{{ livro.capa.url }}" alt="{{ livro.titulo }}">
+                </a>
+                {% endfor %}
+            </div>
+        </section>
+
+    {% endif %}
+
+    {% include "livros/navbar_mobile.html" %}
+
+    <span class="mic-button">🎤</span>
+    
+</main>
+{% endblock content %}
