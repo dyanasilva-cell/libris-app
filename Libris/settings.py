@@ -26,9 +26,6 @@ SECRET_KEY = 'django-insecure-^)9o4gzx(^g4b7^4hv6v+ufcfsu*3kpf+c_vjuhg!*k3%(3emv
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -144,8 +141,11 @@ MEDIA_ROOT = BASE_DIR / 'media'
 LOGIN_REDIRECT_URL = '/'  # Redireciona para a home (/) após o login
 LOGOUT_REDIRECT_URL = '/login/' # Redireciona para a página de login após o logout
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ['.onrender.com', 'libris-app-backend2.onrender.com']
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / 'static', # Esta linha não é crucial se você só usa static dentro das apps
+]
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
