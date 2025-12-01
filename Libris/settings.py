@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-^)9o4gzx(^g4b7^4hv6v+ufcfsu*3kpf+c_vjuhg!*k3%(3emv'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -143,3 +143,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 LOGIN_REDIRECT_URL = '/'  # Redireciona para a home (/) após o login
 LOGOUT_REDIRECT_URL = '/login/' # Redireciona para a página de login após o logout
+
+ALLOWED_HOSTS = ["*"]
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'

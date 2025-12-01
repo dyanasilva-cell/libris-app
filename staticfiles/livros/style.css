@@ -1,0 +1,1603 @@
+/* ========================================================================= */
+/* ESTILOS GERAIS E LAYOUT BASE (Mobile First) */
+/* ========================================================================= */
+:root {
+    --primary-color: #795548; /* Marrom para texto e ícones */
+    --secondary-color: #FFC107; /* Ouro/Amarelo para destaque e logo */
+    --background-light: #F8F8F8; /* Fundo leve */
+    --text-dark: #333;
+    --border-color: #E0E0E0;
+    --white: #FFFFFF;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--background-light);
+    color: var(--text-dark);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+/* Garante que o conteúdo não fique escondido pela navbar fixa */
+.home-container, .detalhe-container {
+    padding-bottom: 70px; /* Espaço para a navbar-mobile */
+}
+
+/* Ícones */
+.icon {
+    font-size: 24px;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+/* ========================================================================= */
+/* HOME.HTML - CABEÇALHO E NAVEGAÇÃO SUPERIOR */
+/* ========================================================================= */
+.topbar {
+    position: sticky;
+    top: 0;
+    background-color: var(--white);
+    padding: 10px 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    z-index: 100;
+}
+
+.topbar-icons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.topbar .logo {
+    width: 40px; /* Ajuste conforme a imagem do seu logo */
+    height: auto;
+}
+
+/* Tabs Seguindo / Pra Você */
+.tabs {
+    display: flex;
+    justify-content: space-between;
+    background-color: #F0F0F0; /* Fundo do container das tabs */
+    border-radius: 20px;
+    padding: 3px;
+    margin: 0 10px;
+    font-size: 14px;
+}
+
+.tab {
+    flex-grow: 1;
+    text-align: center;
+    padding: 8px 15px;
+    text-decoration: none;
+    color: #777; /* Cor do texto inativo */
+    border-radius: 18px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.tab.active {
+    background-color: var(--white);
+    color: var(--text-dark); /* Cor do texto ativo */
+    font-weight: bold;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.icon-link {
+    text-decoration: none;
+}
+
+/* ========================================================================= */
+/* HOME.HTML - SEÇÕES DE LIVROS */
+/* ========================================================================= */
+.book-section {
+    padding: 15px 0 15px 15px; /* Padding na esquerda para a lista começar na borda */
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 15px; /* Para alinhar com a direita */
+    margin-bottom: 10px;
+}
+
+.section-header h2 {
+    font-size: 18px;
+    margin: 0;
+}
+
+.section-header a {
+    color: #999;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+/* Carrossel de Livros (Lista horizontal com scroll) */
+.book-list {
+    display: flex;
+    overflow-x: scroll;
+    padding-bottom: 10px; /* Espaço para sombra */
+    -webkit-overflow-scrolling: touch; /* Melhora o scroll em iOS */
+    gap: 15px;
+}
+
+.book-list a {
+    text-decoration: none;
+    display: block;
+    flex-shrink: 0; /* Impede que os itens diminuam */
+    width: 100px; /* Largura padrão da capa - ajuste se necessário */
+}
+
+.book-list img {
+    width: 100px;
+    height: 150px; /* Altura padrão da capa - ajuste se necessário */
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ========================================================================= */
+/* DETALHE_LIVRO.HTML - ESTILOS */
+/* ========================================================================= */
+.detalhe-container {
+    padding: 0 15px;
+}
+
+/* Estilo Base de Cartão (Retângulo Arredondado Branco) */
+.card-style {
+    background-color: var(--white);
+    border-radius: 15px; /* Bordas suaves */
+    padding: 15px;
+    margin-bottom: 15px; /* Espaço entre os cartões */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Sombra suave para elevação */
+    border: 1px solid var(--border-color); /* Borda fina opcional */
+}
+
+.detail-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.info-principal {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 20px;
+
+    /* NOVO: Aplicar estilo de cartão aqui */
+    background-color: var(--white);
+    border-radius: 15px; 
+    padding: 15px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); 
+    border: 1px solid var(--border-color);
+}
+
+.cover-area .book-cover-large {
+    width: 120px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.text-area h1 {
+    font-size: 20px;
+    margin: 0 0 5px 0;
+}
+
+.text-area .autor {
+    color: #555;
+    margin: 0 0 5px 0;
+    font-size: 14px;
+}
+
+.text-area .genero {
+    color: var(--primary-color);
+    font-size: 13px;
+    margin: 0 0 10px 0;
+    font-weight: bold;
+}
+
+/* Área dos botões */
+.actions {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+/* Botões */
+.btn-leitura,
+.btn-avaliar {
+    flex-grow: 1;
+    padding: 12px 0;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-size: 15px;
+    transition: 0.2s ease;
+}
+
+/* Começar Leitura */
+.btn-leitura {
+    background-color: var(--secondary-color); /* sua cor */
+    color: var(--text-dark);
+}
+
+.btn-leitura:hover {
+    filter: brightness(0.92);
+}
+
+/* Avaliar */
+.btn-avaliar {
+    background-color: var(--border-color); /* sua cor */
+    color: var(--text-dark);
+}
+
+.btn-avaliar:hover {
+    filter: brightness(0.93);
+}
+
+/* Seções Expansíveis (Sinopse e Ficha Técnica) */
+.section-toggle .toggle-header {
+    font-size: 18px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.sinopse-area p {
+    line-height: 1.5;
+    margin: 0 0 20px 0;
+}
+
+/* ========================================================================= */
+/* ESTILOS AVALIAÇÕES RECENTES (PROTÓTIPO) */
+/* ========================================================================= */
+.avaliacoes-recentes {
+    /* Mantém o estilo de cartão */
+    background-color: var(--white);
+    border-radius: 15px; 
+    padding: 15px; /* Já estava no CSS, mas é importante */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); 
+    border: 1px solid var(--border-color); 
+}
+
+.rating-stars {
+    display: flex;
+    gap: 8px;
+    font-size: 28px;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.rating-stars span {
+    color: #ccc;
+    transition: color 0.2s;
+}
+
+.rating-stars span.selected,
+.rating-stars span:hover {
+    color: #ffb800;
+}
+
+
+/* NOVO: Header da Seção de Avaliações */
+.avaliacoes-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px; /* Espaçamento entre o cabeçalho e a primeira avaliação */
+}
+
+.avaliacoes-recentes h2 {
+    font-size: 18px;
+    margin: 0;
+}
+
+.avaliacoes-recentes .adicionar-link {
+    font-size: 14px;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold; /* Para destacar o Adicionar */
+}
+
+/* Item de Avaliação Individual */
+.avaliacao-item {
+    padding: 15px 0;
+    border-bottom: 1px dashed #DDD;
+    position: relative; /* Necessário para posicionar o microfone flutuante */
+}
+
+.avaliacao-item:last-child {
+    border-bottom: none; /* Remove a borda do último item */
+}
+
+/* Header do Item de Avaliação (Avatar, Nome, Data) */
+.avaliacao-item .header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.avaliacao-item .avatar, .avaliacao-item .avatar-img {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-radius: 50%;
+    width: 40px; /* Aumentado para corresponder ao protótipo */
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    object-fit: cover;
+}
+
+.avaliacao-item .user-info {
+    flex-grow: 1; /* Permite que as info. do user ocupem o espaço necessário */
+}
+
+.avaliacao-item .user-name {
+    margin: 0;
+    font-size: 14px;
+}
+
+.avaliacao-item .time-ago {
+    font-size: 12px;
+    color: #999;
+    flex-shrink: 0; /* Impede que o texto de data encolha */
+}
+
+.avaliacao-item .review-text {
+    line-height: 1.4;
+    font-size: 14px;
+    margin: 0;
+}
+
+/* NOVO: Estilização do Rating (Estrelas) */
+.rating-user .star-icon {
+    color: var(--secondary-color); /* Estrelas amarelas */
+    font-size: 16px;
+}
+
+/* NOVO: Footer da Avaliação (Reação Rápida e Microfone) */
+.avaliacao-footer {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.quick-reaction {
+    display: inline-flex;
+    align-items: center;
+    background-color: #EEE; /* Fundo cinza suave */
+    border-radius: 20px;
+    padding: 5px 10px;
+    font-size: 12px;
+    color: #555;
+}
+
+.quick-reaction .emoji {
+    margin-right: 5px;
+    font-size: 16px;
+}
+
+/* Microfone Flutuante - Um pouco mais complexo de posicionar */
+.microphone-icon {
+    /* SIMULA O MICROFONE FLUTUANTE FORA DO FLUXO NORMAL */
+    position: absolute;
+    bottom: 5px; /* Ajuste para flutuar um pouco acima da última avaliação */
+    right: 0; 
+    background-color: var(--secondary-color);
+    color: var(--white);
+    border-radius: 50%;
+    padding: 15px;
+    font-size: 24px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    /* Transformação para fazê-lo flutuar ligeiramente */
+    transform: translateY(-50%); 
+}
+
+/* ========================================================================= */
+/* NAVBAR MÓVEL (livros/templates/livros/navbar_mobile.html) */
+/* ========================================================================= */
+.navbar-mobile {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 60px;
+    background-color: var(--white);
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 5px 0;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #999; /* Cor inativa */
+    font-size: 10px;
+    transition: color 0.3s;
+}
+
+.nav-item .icon {
+    font-size: 24px;
+    color: inherit; /* Usa a cor do .nav-item */
+}
+
+.nav-item:hover, .nav-item.active {
+    color: var(--primary-color); /* Cor ativa */
+}
+
+/* Destaque para o botão central (Adicionar) */
+.nav-center .icon {
+    background-color: var(--secondary-color);
+    color: var(--white);
+    border-radius: 50%;
+    padding: 10px;
+    font-size: 20px;
+    transform: translateY(-10px); /* Move para cima */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* ========================================================================= */
+/* ESTILOS DO ACORDEÃO (Toggle Sinopse/Ficha Técnica) */
+/* ========================================================================= */
+.section-toggle {
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    margin-bottom: 15px;
+    background-color: var(--white);
+    overflow: hidden;
+}
+
+/* Cabeçalho clicável */
+.section-toggle .toggle-header {
+    font-size: 16px;
+    font-weight: 600;
+    padding: 12px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    background-color: #fff;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Ícone de seta */
+.section-toggle .toggle-header::after {
+    content: '▼';
+    font-size: 12px;
+    color: #555;
+    transition: transform 0.3s ease;
+}
+
+/* Quando ativo */
+.section-toggle .toggle-header.active::after {
+    transform: rotate(180deg);
+}
+
+/* Conteúdo escondido por padrão */
+.toggle-content {
+    display: none;
+    padding: 15px;
+    background-color: #fafafa;
+    line-height: 1.5;
+    animation: slideDown 0.3s ease forwards;
+}
+
+/* Animação suave */
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.btn-adicionar-avaliacao { 
+    border: none;
+    background: none;
+    font-size: 14px;
+    color: #777;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+.btn-adicionar-avaliacao:hover {
+    color: #000;
+}
+
+/* ========================================= */
+/* ESTILOS DE AUTENTICAÇÃO (Login / Registro)*/
+/* ========================================= */
+
+/* 1. Container Principal (Centraliza o conteúdo) */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f7f7f7; /* Um fundo suave */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* 2. Caixa de Login/Registro (White Card) */
+.login-box {
+    width: 100%;
+    max-width: 350px; /* Largura máxima para simular um dispositivo móvel */
+    background-color: #ffffff;
+    padding: 30px 25px;
+    border-radius: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+/* 3. Logo (Libris) */
+.logo-libres {
+    margin-bottom: 30px;
+}
+
+.logo-libres img {
+    width: 70px; /* Ajuste o tamanho da imagem do logo */
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.logo-text {
+    font-size: 28px;
+    font-weight: 700;
+    color: #cca350; /* Cor dourada/amarelada do logo */
+    margin: 0;
+}
+
+.auth-heading {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 30px;
+    font-weight: 400;
+}
+
+/* 4. Estilo dos Inputs (E-mail, Senha, Nome) */
+label {
+    display: block;
+    text-align: left;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+}
+
+.login-box input[type="text"],
+.login-box input[type="email"],
+.login-box input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 12px;
+    background-color: #f0f3f8; /* Cor de fundo clara para o input */
+    font-size: 16px;
+    box-sizing: border-box; /* Garante que o padding não aumente a largura */
+}
+
+/* 5. Estilo dos Botões */
+.btn-primary {
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    background-color: #cca350; /* Dourado/Marrom do botão principal */
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: #b38e45;
+}
+
+.btn-secondary {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background-color: #f0f3f8; /* Fundo claro do botão secundário (Criar Conta) */
+    color: #333;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 17px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.btn-secondary:hover {
+    background-color: #e5e5e5;
+}
+
+/* 6. Links e Divisores */
+.forgot-password {
+    display: block;
+    color: #cca350;
+    font-size: 14px;
+    text-decoration: none;
+    margin-bottom: 25px;
+}
+
+.divider {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 12px;
+    color: #ccc;
+    position: relative;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 40%;
+    height: 1px;
+    background: #e0e0e0;
+}
+
+.divider::before {
+    left: 0;
+}
+
+.divider::after {
+    right: 0;
+}
+
+/* Estilo para Mensagens de Erro */
+.error-message {
+    background-color: #ffebeb;
+    color: #cc0000;
+    border: 1px solid #cc0000;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    text-align: left;
+}
+
+/* PERFIL ======== LAYOUT GERAL ======== */
+body {
+    background: #f5f5f5;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+/* ======== HEADER DO PERFIL ======== */
+.perfil-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 20px;
+    font-size: 18px;
+    font-weight: 600;
+    border-bottom: 1px solid #ddd;
+    background: #fff;
+}
+
+.perfil-header .back-btn {
+    font-size: 22px;
+    cursor: pointer;
+}
+
+/* ======== CARD PRINCIPAL DO PERFIL ======== */
+.perfil-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 30px 20px;
+    margin: 20px auto;
+    width: 92%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+    text-align: center;
+}
+
+.perfil-avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: 600;
+    margin: 0 auto 10px auto;
+}
+
+.perfil-nome {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.perfil-email {
+    color: #777;
+    margin-bottom: 8px;
+}
+
+.perfil-bio {
+    color: #c39800;
+    margin-bottom: 12px;
+}
+
+.perfil-pontos {
+    display: inline-block;
+    background: #d9534f;
+    color: #fff;
+    padding: 5px 12px;
+    border-radius: 12px;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.perfil-stats {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 15px;
+}
+
+.perfil-stats div {
+    text-align: center;
+}
+
+.perfil-stats div span {
+    display: block;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+/* ======== CONQUISTAS ======== */
+.conquistas-card {
+    width: 92%;
+    background: #fff;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+}
+
+.conquistas-card h3 {
+    margin-bottom: 15px;
+}
+
+.conquistas-lista {
+    display: flex;
+    gap: 15px;
+}
+
+.conquista-item {
+    background: #f6f6f6;
+    border-radius: 15px;
+    padding: 10px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ======== MENUS DO PERFIL ======== */
+.perfil-menus {
+    margin: 0 20px;
+    margin-top: 10px;
+}
+
+.perfil-menus a:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+.menu-item {
+    background: #fff;
+    padding: 16px;
+    border-radius: 14px;
+    margin-bottom: 12px;
+    text-decoration: none !important;
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 2px 6px rgba(0,0,0,0.08);
+}
+
+.menu-item span {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ======== BOTÃO SAIR ======== */
+.btn-sair {
+    background: #cba04a;
+    color: #fff;
+    width: 92%;
+    border: none;
+    padding: 14px;
+    border-radius: 12px;
+    font-size: 17px;
+    font-weight: 600;
+    margin: 0 auto 120px auto;
+    display: block;
+    text-align: center;
+    cursor: pointer;
+}
+
+.btn-sair:hover {
+    background: #b48b3f;
+}
+
+/* ========================================= */
+/* LEITURA — ESTILO MOBILE */
+/* ========================================= */
+
+.leitura-container {
+    width: 100%;
+    min-height: 100vh;
+    background: #fafafa;
+    padding: 15px;
+    font-family: 'Georgia', serif;
+    line-height: 1.6;
+}
+
+/* ========================= */
+/* TOPO - IGUAL DETALHE LIVRO */
+/* ========================= */
+
+.detail-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    margin-bottom: 10px;
+}
+
+.detail-topbar a {
+    text-decoration: none;
+}
+
+.detail-topbar .icon {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* grupo de ícones à direita */
+.top-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.top-actions .icon {
+    font-size: 22px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.top-actions .icon:hover {
+    transform: scale(1.1);
+}
+
+/* ========================= */
+/* CAPA / TÍTULO */
+/* ========================= */
+
+.pagina-box {
+    margin: auto;
+    max-width: 620px;
+    font-size: 18px;
+}
+
+.center {
+    text-align: center;
+}
+
+.capa-leitura {
+    width: 60%;
+    margin: 60px auto;
+    border-radius: 12px;
+    display: block;
+}
+
+.titulo-leitura {
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: 140px;
+}
+
+.autor-leitura {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #666;
+}
+
+/* ========================= */
+/* TEXTO DO LIVRO */
+/* ========================= */
+.texto-leitura {
+    margin-top: 40px;
+}
+
+.texto-leitura p {
+    margin-bottom: 18px;
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+/* ========================= */
+/* PAGINAÇÃO */
+/* ========================= */
+.paginacao {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.page-btn {
+    padding: 7px 12px;
+    border-radius: 8px;
+    background: #ddd;
+    color: #444;
+    font-size: 14px;
+    text-decoration: none;
+    border: none;
+}
+
+.page-btn.active {
+    background: #d1a23c;
+    color: #fff;
+}
+
+/* BOTÃO LATERAL */
+/* Botão lateral */
+.btn-toggle-comments {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    padding: 10px 16px;
+    background: #d4a331;
+    color: #fff;
+    border-radius: 12px;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    z-index: 999;
+}
+
+/* Lateral */
+.comentarios-lateral {
+    position: fixed;
+    top: 90px;
+    right: 0;
+    width: 340px;
+    height: calc(100vh - 100px);
+    background: #fff;
+    box-shadow: 0 0 12px rgba(0,0,0,.15);
+    padding: 18px;
+    overflow-y: auto;
+    transition: .25s;
+    z-index: 9999;
+}
+
+.comentarios-lateral.hidden {
+    transform: translateX(380px); /* Off-screen */
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.sidebar-header button {
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/* ========================= */
+/* DARK MODE */
+/* ========================= */
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background: #111;
+        color: #eaeaea;
+    }
+
+    .page-btn {
+        background: #333;
+        color: #fff;
+    }
+
+    .page-btn.active {
+        background: #e1b23c;
+    }
+}
+
+
+/* ================================ */
+/* 📚 MINHA BIBLIOTECA              */
+/* ================================ */
+
+.biblioteca-container {
+    padding: 10px 15px 80px; 
+    background: var(--white);
+}
+
+/* Topbar estilo APP */
+.bib-topbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    font-weight: bold;
+    color: var(--text-dark);
+}
+
+/* --------------------------
+  Tabs estilo Netflix
+--------------------------- */
+
+.bib-tabs {
+    display: flex;
+    background: #f0f0f0;
+    padding: 3px;
+    border-radius: 20px;
+    margin: 10px 0 18px;
+}
+
+.bib-tabs a {
+    flex: 1;
+    text-align: center;
+    padding: 8px 12px;
+    border-radius: 18px;
+    color: #777;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.bib-tabs a.active {
+    background: var(--white);
+    color: var(--text-dark);
+    font-weight: 600;
+    box-shadow: 0 1px 4px rgba(0,0,0,.12);
+}
+
+/* --------------------------
+  Lista de livros
+--------------------------- */
+
+.bib-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* CARD DO LIVRO */
+.bib-item {
+    display: flex;
+    gap: 12px;
+    padding: 10px;
+    border-radius: 12px;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,.06);
+    box-shadow: 0 1px 3px rgba(0,0,0,.08);
+}
+
+/* Mini capa */
+.bib-capa {
+    width: 60px;
+    height: 85px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+/* Infos */
+.bib-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Título */
+.bib-info h4 {
+    font-size: 15px;
+    color: var(--text-dark);
+    font-weight: 600;
+    margin: 0;
+}
+
+/* Autor */
+.bib-info .autor {
+    font-size: 12px;
+    margin: 2px 0 10px;
+    color: #555;
+}
+
+/* --------------------------
+  Barra de progresso
+--------------------------- */
+
+.barra {
+    position: relative;
+    width: 100%;
+    height: 6px;
+    background: #e6e6e6;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.fill {
+    height: 100%;
+    background: #c29432;
+    border-radius: 5px;
+}
+
+/* Percentual alinhado à direita */
+.percent {
+    font-size: 12px;
+    font-weight: 600;
+    color: #555;
+    margin-top: 4px;
+    text-align: right;
+}
+
+/* --------------------------
+  Estrelas + nota
+--------------------------- */
+
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 6px;
+}
+
+.rating i {
+    color: #f6c431;
+    font-size: 13px;
+}
+
+/* ================================ */
+/* TELA DE BUSCA              */
+/* ================================ */
+
+.search-container {
+    padding: 10px 15px;
+    background: #fafafa;
+}
+
+/* HEADER */
+.search-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 10px;
+}
+
+.search-header h2 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.back-btn {
+    text-decoration: none;
+    font-size: 22px;
+    color: var(--text-dark);
+}
+
+/* SEARCH BAR */
+.search-box {
+    background: #f0f0f0;
+    padding: 8px;
+    border-radius: 10px;
+}
+
+.search-box input {
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 8px;
+    font-size: 14px;
+    background: transparent;
+}
+
+/* TÍTULOS DE SESSÃO */
+.section {
+    margin: 22px 0 14px;
+}
+
+.section h4 {
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: var(--text-dark);
+}
+
+/* ======================= */
+/*   CLUBE DO LIVRO       */
+/* ======================= */
+
+.club-scroll {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding-bottom: 5px;
+}
+
+.club-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.club-pill {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 78px;
+    text-decoration: none;
+    color: var(--text-dark);
+    gap: 5px;
+}
+
+.club-pill img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+.club-pill span {
+    font-size: 12px;
+    text-align: center;
+}
+
+/* ======================= */
+/*  PILLS DE CATEGORIA     */
+/* ======================= */
+
+.pill-scroll {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 5px;
+}
+
+.pill-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.pill {
+    padding: 7px 16px;
+    font-size: 13px;
+    background: #f1f1f1;
+    border-radius: 20px;
+    text-decoration: none;
+    color: #555;
+    white-space: nowrap;
+    transition: .2s;
+}
+
+.pill.active {
+    background: #FFD966;
+    color: #000;
+    font-weight: 600;
+}
+
+/* ================================ */
+/*  CARDS EM GRADE (ESTILO APP)    */
+/* ================================ */
+
+.books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 18px;
+    margin-top: 18px;
+    padding-bottom: 30px;
+}
+
+/* CARD */
+.book-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: var(--text-dark);
+    background: #fff;
+    border-radius: 18px;
+    padding: 12px;
+    box-shadow: 0px 2px 8px rgba(0,0,0,0.08);
+    transition: .25s ease;
+    overflow: hidden;
+}
+
+.book-card:hover {
+    transform: translateY(-3px);
+}
+
+/* CAPA */
+.book-cover-box {
+    width: 100%;
+    aspect-ratio: 3/4;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #ececec;
+}
+
+.book-cover-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* TEXTO */
+.book-title {
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1f1f1f;
+    line-height: 1.3;
+    height: 36px;
+    overflow: hidden;
+}
+
+.book-author {
+    font-size: 12px;
+    color: #6f6f6f;
+    margin-top: 2px;
+    margin-bottom: 6px;
+}
+
+/* ESTRELAS */
+.book-rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 4px;
+    font-weight: 500;
+    font-size: 13px;
+    color: #c19a2d;
+}
+
+.book-rating img {
+    width: 14px;
+    height: 14px;
+}
+
+/* MOBILE — FICA 2 CARTÕES */
+@media (max-width: 540px) {
+    .books-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+    }
+
+    .book-title {
+        font-size: 13px;
+    }
+}
+
+/* ========================= CHAT ========================= */
+
+.chat-container {
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* LOGO central topo */
+.chat-header {
+    display: flex;
+    justify-content: center;
+    padding: 12px 0;
+}
+
+.chat-logo {
+    width: 46px;
+}
+
+/* INPUT */
+.chat-search input {
+    width: 100%;
+    padding: 10px 16px;
+    border-radius: 18px;
+    border: none;
+    background: #f2f2f2;
+    font-size: 14px;
+}
+
+/* LISTA */
+.chat-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.chat-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 8px;
+    text-decoration: none;
+    color: #111;
+}
+
+.chat-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #e0e0e0;
+}
+
+
+/* NOME + MENSAGEM */
+.chat-info {
+    flex: 1;
+}
+
+.chat-info h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.chat-info p {
+    font-size: 12px;
+    margin: 4px 0 0 0;
+    color: #666;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* NOTIFICAÇÃO */
+.chat-badge {
+    background: #d4b04a;
+    color: white;
+    padding: 4px 9px;
+    font-size: 12px;
+    border-radius: 14px;
+    font-weight: 600;
+}
+
+/*DENTRO DA CONVERSA*/
+
+.chat-room {
+    display:flex;
+    flex-direction:column;
+    height:90vh;
+}
+
+.chat-body {
+    flex:1;
+    overflow-y:auto;
+    padding:12px;
+    background:#f8f8f8;
+}
+
+.msg {
+    max-width:60%;
+    margin-bottom:12px;
+    padding:8px 12px;
+    border-radius:10px;
+    font-size:14px;
+}
+
+.msg.other {
+    background:#fff;
+    align-self:flex-start;
+}
+
+.msg.me {
+    background:#d3f1ff;
+    align-self:flex-end;
+}
+
+.chat-send {
+    display:flex;
+    padding:10px;
+    gap:10px;
+    background:#fff;
+    border-top:1px solid #ddd;
+}
+
+.chat-send input {
+    flex:1;
+    padding:10px;
+    border-radius:8px;
+    border:1px solid #ccc;
+}
+
+.comentarios-lateral {
+    position: fixed;
+    right: 15px;
+    top: 80px;
+    width: 260px;
+    max-height: 80vh;
+    overflow-y: auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.1);
+    padding: 15px;
+    z-index: 999;
+}
+
+.comentario-paragrafo {
+    margin-bottom: 18px;
+}
+
+.p-tag {
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #d1a23c;
+}
+
+.comment-item {
+    padding: 8px;
+    border-left: 3px solid #d1a23c;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.comment-item .data {
+    font-size: 11px;
+    opacity: .6;
+}
+
+/* ========================= MICROFONE ========================= */
+
+.mic-button {
+    position: fixed;
+    bottom: 95px;
+    right: 20px;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: #d1a23c;
+    color: white;
+    font-size: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0,0,0,.3);
+    z-index: 999;
+    transition: .2s;
+}
+
+.mic-button.listening {
+    background: #f06565;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
